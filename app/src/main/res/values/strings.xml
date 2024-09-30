@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SmartWatt App</string>
+    <string name="redirect_text_sign">¿Es tu primera vez? <u>Registrate</u></string>
 </resources>

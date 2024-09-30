@@ -29,4 +29,6 @@
 
     <!-- Color de íconos de navegación seleccionados -->
     <color name="nav_icon_selected">#FFC107</color>
+
+    <color name="login_title">#DC4C18</color>
 </resources>
