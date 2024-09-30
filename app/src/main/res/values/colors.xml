@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color de fondo general -->
+    <color name="gray_background">#F5F5F5</color>
+
+    <!-- Color de texto principal (negro) -->
+    <color name="black">#000000</color>
+
+    <!-- Color de texto secundario (gris) -->
+    <color name="gray_text">#808080</color>
+
+    <!-- Color del acento amarillo para el logo y otros elementos -->
+    <color name="yellow_accent">#FFC107</color>
+
+    <!-- Color del texto blanco (para los íconos y texto dentro de los botones) -->
+    <color name="white">#FFFFFF</color>
+
+    <!-- Color del texto negro ligero para subtítulos -->
+    <color name="light_black">#212121</color>
+
+    <!-- Color del borde o fondo del MaterialCardView -->
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Color de la barra de navegación inferior -->
+    <color name="navigation_bar_background">#FFFFFF</color>
+
+    <!-- Color de íconos de navegación no seleccionados -->
+    <color name="nav_icon_unselected">#9E9E9E</color>
+
+    <!-- Color de íconos de navegación seleccionados -->
+    <color name="nav_icon_selected">#FFC107</color>
+</resources>
