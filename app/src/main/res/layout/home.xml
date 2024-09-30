@@ -1,74 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_background"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:backgroundTint="#E8E8E8"
+    >
 
-    <!-- Encabezado (Logo y Título) -->
+    <!-- Título de la app -->
     <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="⚡"
-        android:textSize="24sp"
-        android:textColor="@color/yellow_accent"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <TextView
-        android:id="@+id/app_name"
+        android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SmartWatt"
-        android:textSize="22sp"
         android:textColor="@color/black"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/logo"
-        app:layout_constraintTop_toTopOf="@id/logo"/>
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:drawableStart="@drawable/ic_lightning_bolt"
+        android:drawablePadding="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="32dp"/>
 
+    <!-- Subtítulo -->
     <TextView
-        android:id="@+id/subtitle"
+        android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="La aplicación que ahorra la energía de tu hogar"
-        android:textSize="14sp"
         android:textColor="@color/gray_text"
-        android:layout_marginTop="4dp"
-        app:layout_constraintTop_toBottomOf="@id/app_name"
-        app:layout_constraintStart_toStartOf="@id/app_name"/>
-
-    <!-- Estadísticas de hoy -->
-    <TextView
-        android:id="@+id/stats_today"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estadísticas de hoy"
         android:textSize="16sp"
-        android:textColor="@color/black"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@id/subtitle"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"/>
 
     <!-- Tarjeta de Consumo en tiempo real -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/real_time_consumption_card"
+        android:id="@+id/card_consumo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_subtitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/stats_today"
+        android:layout_marginTop="24dp"
         android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp">
+        android:layout_marginEnd="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -77,157 +60,172 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/tv_consumo_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Consumo en tiempo real"
-                android:textSize="14sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/gray_text"
+                android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/tv_consumo_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1 kWh"
-                android:textSize="24sp"
                 android:textColor="@color/black"
-                android:layout_marginTop="8dp"/>
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp" />
 
             <TextView
+                android:id="@+id/tv_consumo_cost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Costos incurridos: $4.560"
-                android:textSize="14sp"
+                android:text="Costo incurrido: $4.560"
                 android:textColor="@color/gray_text"
-                android:layout_marginTop="4dp"/>
-
+                android:textSize="14sp"
+                android:layout_marginTop="4dp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- Tarjeta de Voltaje, Corriente y Potencia -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <!-- Tarjeta de Voltaje -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_voltage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/card_consumo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/card_current"
         android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_voltage_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voltaje"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_voltage_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="210.5 V"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Tarjeta de Corriente -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_current"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/card_consumo"
+        app:layout_constraintStart_toEndOf="@id/card_voltage"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_current_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Corriente"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_current_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6.8 A"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Tarjeta de Potencia -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_power"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/card_voltage"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/real_time_consumption_card"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp">
 
-        <!-- Tarjeta de Voltaje -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/voltage_card"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/current_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:gravity="center"
+            >
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_power_title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:text="Potencia"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp"
+                />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Voltaje"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="210.5 V"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Tarjeta de Corriente -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/current_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/power_card"
-            app:layout_constraintStart_toEndOf="@+id/voltage_card"
-            app:layout_constraintTop_toTopOf="parent"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tv_power_value"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Corriente"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="6.8 A"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Tarjeta de Potencia -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/power_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/current_card"
-            app:layout_constraintTop_toTopOf="parent"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Potencia"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="220.7 W"
-                    android:textSize="24sp"
-                    android:textColor="@color/black"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginTop="8dp"
+                android:text="220.7 W"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
     <!-- Barra de navegación inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
         app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/navigation_bar_background"
+        app:itemIconTint="@color/nav_icon_unselected"
+        app:itemTextColor="@color/nav_icon_unselected"
+        app:labelVisibilityMode="labeled" />
 </androidx.constraintlayout.widget.ConstraintLayout>
