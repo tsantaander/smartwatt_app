@@ -163,17 +163,23 @@
 
     </LinearLayout>
 
+    <!-- Barra de navegación inferior -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:menu="@menu/bottom_nav_menu"
+        android:background="@color/navigation_bar_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/navigation_bar_background"
-        app:itemIconTint="@color/nav_icon_unselected"
-        app:itemTextColor="@color/nav_icon_unselected"
-        app:labelVisibilityMode="labeled" />
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/button_nav_color"
+        app:itemIconSize="24dp"
+        android:elevation="10dp"
+        app:itemTextColor="@color/gray_text"
+        app:itemRippleColor="@color/bottom_nav_ripple_color"
+        app:itemActiveIndicatorStyle="@style/App.CustomActiveIndicator"
+        app:labelVisibilityMode="labeled"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
