@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver"
+            android:text="@string/return_panel_conf"
             android:layout_marginLeft="10dp"
             app:layout_constraintStart_toEndOf="@id/return_icon"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ajustes"
+            android:text="@string/title_conf"
             android:textStyle="bold"
             android:textSize="20dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modo Oscuro"
+                android:text="@string/dark_mode_text"
                 android:textSize="20dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +98,7 @@
                 android:id="@+id/alert_consume"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alertas de consumo"
+                android:text="@string/consume_alert"
                 android:textSize="20dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +127,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Modo de ahorro de energía"
+                android:text="@string/ahorro_energia_op"
                 android:textSize="20dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -152,7 +152,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Idiomas"
+            android:text="@string/lenguage_op"
             android:textSize="20dp"
             android:gravity="center | left"
             android:padding="20dp"

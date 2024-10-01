@@ -40,4 +40,5 @@
     <color name="progress_bar_limit">#ffd59e</color>
 
     <color name="login_title">#DC4C18</color>
+    <color name="buttons_login_sign_color">#871400</color>
 </resources>
