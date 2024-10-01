@@ -16,4 +16,10 @@
     <string name="text_ajustes">Ajustes</string>
     <string name="text_analisis">Análisis</string>
     <string name="text_panel">Panel</string>
+    <string name="consumido_en_el_mes">Consumido en el mes</string>
+    <string name="estatistics">Estadísticas</string>
+    <string name="text_consumo_mensual">384 kWh</string>
+    <string name="text_grafica">Gráfica de consumo</string>
+    <string name="descripcion_grafica">grafica de consumo</string>
+    <string name="a_pagar">A pagar</string>
 </resources>

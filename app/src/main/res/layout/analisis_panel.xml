@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_background"
+    tools:context=".MainActivity"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="10dp"
+        >
+        <ImageView
+            android:id="@+id/return_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:textColor="@color/gray_text"
+            android:layout_marginLeft="10dp"
+            app:layout_constraintStart_toEndOf="@id/return_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/estatistics"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/gray_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:src="@drawable/info"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Tarjeta de consumo en tiempo real -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_consumo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/top_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_consumo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/consumido_en_el_mes"
+                android:textStyle="bold"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_consumo_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
+                android:text="@string/text_consumo_mensual"
+                android:textColor="@color/gray_text"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                app:drawableStartCompat="@drawable/ic_graphic" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Gráfica de Consumo -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_grafica"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@id/card_consumo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_grafica"
+                android:textStyle="bold"
+                android:textColor="@color/gray_text"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/descripcion_grafica"
+                android:src="@drawable/grafica"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- CardView para contener la información -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:strokeColor="@android:color/transparent"
+        app:cardBackgroundColor="@color/card_background"
+        app:layout_constraintTop_toBottomOf="@id/card_grafica"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <!-- Layout interno dentro de la tarjeta -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/cost_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Costos incurridos"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:textColor="@color/gray_text" />
+
+            <!-- Ícono de primer item -->
+            <ImageView
+                android:id="@+id/icon_payment"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_cost"
+                app:layout_constraintTop_toBottomOf="@id/cost_title"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="10dp" />
+
+            <!-- Texto "A pagar" -->
+            <TextView
+                android:id="@+id/payment_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/a_pagar"
+                android:textSize="14sp"
+                android:textColor="@color/gray_text"
+                app:layout_constraintTop_toBottomOf="@id/cost_title"
+                app:layout_constraintStart_toEndOf="@id/icon_payment"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp" />
+
+            <!-- Monto a pagar -->
+            <TextView
+                android:id="@+id/payment_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="$ 56.000 CLP"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/gray_text"
+                app:layout_constraintTop_toBottomOf="@id/cost_title"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp" />
+
+            <!-- Barra de progreso verde para el pago -->
+            <ProgressBar
+                android:id="@+id/payment_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:progress="20"
+                android:max="100"
+                android:progressTint="@color/progress_bar_cost"
+                app:layout_constraintTop_toBottomOf="@id/payment_label"
+                app:layout_constraintStart_toStartOf="@id/icon_payment"
+                app:layout_constraintEnd_toEndOf="@id/payment_amount"
+                android:layout_marginTop="15dp" />
+
+            <!-- Ícono de segundo item -->
+            <ImageView
+                android:id="@+id/icon_limit"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_limit"
+                app:layout_constraintTop_toBottomOf="@id/payment_progress"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="10dp" />
+
+            <!-- Texto "Límite mensual" -->
+            <TextView
+                android:id="@+id/limit_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Límite mensual establecido"
+                android:textSize="14sp"
+                android:textColor="@color/gray_text"
+                app:layout_constraintTop_toBottomOf="@id/payment_progress"
+                app:layout_constraintStart_toEndOf="@id/icon_limit"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp" />
+
+            <!-- Límite en kWh -->
+            <TextView
+                android:id="@+id/limit_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="400 kWh"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                android:textColor="@color/gray_text"
+                app:layout_constraintTop_toBottomOf="@id/payment_progress"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp" />
+
+            <!-- Barra de progreso naranja para el límite -->
+            <ProgressBar
+                android:id="@+id/limit_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="0dp"
+                android:layout_height="8dp"
+                android:progress="80"
+                android:max="100"
+                android:progressTint="@color/progress_bar_limit"
+                app:layout_constraintTop_toBottomOf="@id/limit_label"
+                app:layout_constraintStart_toStartOf="@id/icon_limit"
+                app:layout_constraintEnd_toEndOf="@id/limit_amount"
+                android:layout_marginTop="15dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Barra de navegación inferior -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/navigation_bar_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/bottom_nav_menu"
+        app:itemIconTint="@color/button_nav_color"
+        app:itemIconSize="24dp"
+        android:elevation="10dp"
+        app:itemTextColor="@color/gray_text"
+        app:itemRippleColor="@color/bottom_nav_ripple_color"
+        app:itemActiveIndicatorStyle="@style/App.CustomActiveIndicator"
+        app:labelVisibilityMode="labeled"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

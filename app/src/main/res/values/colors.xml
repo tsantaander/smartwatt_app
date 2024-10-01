@@ -35,5 +35,9 @@
 
     <color name="bottom_nav_ripple_color">#33000000</color>
 
+    <color name="progress_bar_cost">#abf4c3</color>
+
+    <color name="progress_bar_limit">#ffd59e</color>
+
     <color name="login_title">#DC4C18</color>
 </resources>
