@@ -10,23 +10,23 @@
     android:backgroundTint="#E8E8E8"
     >
 
-    <!-- Título de la app -->
+    <!-- Logo y Título de la app -->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:drawableStart="@drawable/ic_logo_smartwatt"
+        android:drawablePadding="8dp"
         android:text="SmartWatt"
         android:textColor="@color/black"
-        android:textSize="24sp"
+        android:textSize="42sp"
         android:textStyle="bold"
-        android:drawableStart="@drawable/ic_lightning_bolt"
-        android:drawablePadding="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp"/>
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Subtítulo -->
     <TextView
         android:id="@+id/tv_subtitle"
         android:layout_width="wrap_content"
