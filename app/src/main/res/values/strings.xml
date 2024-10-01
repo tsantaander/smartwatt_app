@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">SmartWatt App</string>
     <string name="redirect_text_sign">¿Es tu primera vez? <u>Registrate</u></string>
+    <string name="title_smartwatt">SmartWatt</string>
+    <string name="text_slogan">La aplicación que ahorra la energía de tu hogar</string>
+    <string name="subtitle1">Estadísticas de hoy</string>
+    <string name="consumo_en_tiempo_real">Consumo en tiempo real</string>
+    <string name="text_consumo">1 kWh</string>
+    <string name="costos_consumo">Costo incurrido: $4.560</string>
+    <string name="text_voltaje">Voltaje</string>
+    <string name="consumo_voltaje">210.5 V</string>
+    <string name="text_corriente">Corriente</string>
+    <string name="consumo_corriente">6.8 A</string>
+    <string name="text_potencia">Potencia</string>
+    <string name="consumo_potencia">220.7 W</string>
+    <string name="text_ajustes">Ajustes</string>
+    <string name="text_analisis">Análisis</string>
+    <string name="text_panel">Panel</string>
 </resources>

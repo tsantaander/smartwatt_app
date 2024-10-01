@@ -1,7 +1,7 @@
 <!-- Permite modificar el tamaño del logo a importar en home.xml -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:drawable="@drawable/logoSmartWatt"
+        android:drawable="@drawable/logo_smartwatt"
         android:width="50dp"
         android:height="50dp"/>
 </layer-list>

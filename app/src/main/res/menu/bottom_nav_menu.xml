@@ -1,14 +1,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/navigation_home"
+        android:enabled="true"
         android:icon="@drawable/home"
-        android:title="Panel" />
+        android:title="@string/text_panel" />
     <item
         android:id="@+id/navigation_analysis"
+        android:enabled="true"
         android:icon="@drawable/chart"
-        android:title="Análisis" />
+
+        android:title="@string/text_analisis" />
     <item
         android:id="@+id/navigation_settings"
+        android:enabled="true"
         android:icon="@drawable/settings"
-        android:title="Ajustes" />
+        android:title="@string/text_ajustes"
+        />
 </menu>

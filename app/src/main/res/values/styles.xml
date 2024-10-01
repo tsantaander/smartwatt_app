@@ -1,0 +1,7 @@
+<!-- Manejo del estilo del fondo del icono al seleccionarlo -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="App.CustomActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/nav_back_selected</item>
+    </style>
+</resources>
