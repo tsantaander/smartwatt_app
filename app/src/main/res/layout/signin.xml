@@ -192,7 +192,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/buttons_login_sign_color"
-                    android:text="Registrarse"
+                    android:text="@string/link_sign"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

@@ -154,7 +154,6 @@
             android:layout_height="wrap_content"
             android:text="@string/lenguage_op"
             android:textSize="20dp"
-            android:gravity="center | left"
             android:padding="20dp"
             />
         <com.google.android.material.divider.MaterialDivider

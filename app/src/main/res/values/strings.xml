@@ -16,4 +16,20 @@
     <string name="text_ajustes">Ajustes</string>
     <string name="text_analisis">Análisis</string>
     <string name="text_panel">Panel</string>
+    <string name="link_sign">Registrarse</string>
+    <string name="password_hint_sign">Constraseña123.</string>
+    <string name="password_hint">Contraseña</string>
+    <string name="medidor_hint_sign">34KDJFKFL</string>
+    <string name="medidor_title_sign">Codigo medidor</string>
+    <string name="email_hint_sign">example@gmail.com</string>
+    <string name="email_hint">Correo electrónico</string>
+    <string name="name_hint_sign">John Doe</string>
+    <string name="login_title_text">Inicio de sesión</string>
+    <string name="login_button_text">Iniciar sesión</string>
+    <string name="return_panel_conf">Volver</string>
+    <string name="title_conf">Ajustes</string>
+    <string name="dark_mode_text">Modo Oscuro</string>
+    <string name="consume_alert">Alertas de consumo</string>
+    <string name="ahorro_energia_op">Modo ahorro de energía</string>
+    <string name="lenguage_op">Idiomas</string>
 </resources>
