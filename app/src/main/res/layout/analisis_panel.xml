@@ -22,6 +22,7 @@
             android:id="@+id/return_icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/icon_back_desc"
             android:src="@drawable/baseline_arrow_back_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,9 +31,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Volver"
+            android:text="@string/back"
             android:textColor="@color/gray_text"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@id/return_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -54,6 +55,7 @@
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:src="@drawable/info"
+            android:contentDescription="@string/icon_help"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -173,7 +175,7 @@
                 android:id="@+id/cost_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Costos incurridos"
+                android:text="@string/gastos"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 app:layout_constraintTop_toTopOf="parent"
@@ -181,12 +183,13 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/gray_text" />
 
-            <!-- Ícono de primer item -->
+            <!-- Ícono del primer item -->
             <ImageView
                 android:id="@+id/icon_payment"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_cost"
+                android:contentDescription="@string/icon_payment_desc"
                 app:layout_constraintTop_toBottomOf="@id/cost_title"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="10dp" />
@@ -209,7 +212,7 @@
                 android:id="@+id/payment_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="$ 56.000 CLP"
+                android:text="@string/monto_pago"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="@color/gray_text"
@@ -237,6 +240,7 @@
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_limit"
+                android:contentDescription="@string/icon_limit_user"
                 app:layout_constraintTop_toBottomOf="@id/payment_progress"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="10dp" />
@@ -246,7 +250,7 @@
                 android:id="@+id/limit_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Límite mensual establecido"
+                android:text="@string/limit_month"
                 android:textSize="14sp"
                 android:textColor="@color/gray_text"
                 app:layout_constraintTop_toBottomOf="@id/payment_progress"
@@ -259,7 +263,7 @@
                 android:id="@+id/limit_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="400 kWh"
+                android:text="@string/wht_month"
                 android:textStyle="bold"
                 android:textSize="14sp"
                 android:textColor="@color/gray_text"
@@ -280,27 +284,7 @@
                 app:layout_constraintStart_toStartOf="@id/icon_limit"
                 app:layout_constraintEnd_toEndOf="@id/limit_amount"
                 android:layout_marginTop="15dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
-
-    <!-- Barra de navegación inferior -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/navigation_bar_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/button_nav_color"
-        app:itemIconSize="24dp"
-        android:elevation="10dp"
-        app:itemTextColor="@color/gray_text"
-        app:itemRippleColor="@color/bottom_nav_ripple_color"
-        app:itemActiveIndicatorStyle="@style/App.CustomActiveIndicator"
-        app:labelVisibilityMode="labeled"
-        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

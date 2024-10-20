@@ -33,6 +33,12 @@
     <!-- Color de íconos de navegación seleccionados -->
     <color name="nav_icon_selected">#1E293B</color>
 
+    <color name="colorTrackActive">#f7c559</color>
+    <color name="colorTrackInactive">#dbdbdb</color>
+
+    <color name="colorThumbActive">#1E293B</color>
+    <color name="colorThumbInactive">#777777</color>
+
     <color name="bottom_nav_ripple_color">#33000000</color>
 
     <color name="progress_bar_cost">#abf4c3</color>
@@ -40,5 +46,6 @@
     <color name="progress_bar_limit">#ffd59e</color>
 
     <color name="login_title">#DC4C18</color>
+
     <color name="buttons_login_sign_color">#871400</color>
 </resources>

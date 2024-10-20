@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Color del thumb cuando está activado -->
+    <item android:color="@color/colorThumbActive" android:state_checked="true" />
+    <!-- Color del thumb cuando está desactivado -->
+    <item android:color="@color/colorThumbInactive" />
+</selector>

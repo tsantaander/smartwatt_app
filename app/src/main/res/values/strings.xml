@@ -51,4 +51,16 @@
     </string>
     <string name="login">Acceder</string>
     <string name="sign">Registrarse</string>
+    <string name="back">Volver</string>
+    <string name="gastos">Costos incurridos</string>
+    <string name="monto_pago">$ 56.000 CLP</string>
+    <string name="limit_month">Límite mensual establecido</string>
+    <string name="wht_month">400 kWh</string>
+    <string name="icon_payment_desc">icono que hace referencia a el total a pagar</string>
+    <string name="icon_help">icono de ayuda o entrega de información</string>
+    <string name="icon_limit_user">icono que hace referencia al limite de consumo establecido por el usuario</string>
+    <string name="icon_back_desc">icono que le permite al usuario regresar en una vista</string>
+    <string name="btn_back">Regresar</string>
+    <string name="inicio_desc_background">fondo de inicio de sesión</string>
+    <string name="create_account">Creación de cuentas</string>
 </resources>

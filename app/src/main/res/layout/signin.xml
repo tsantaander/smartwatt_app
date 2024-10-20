@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,8 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="SmartWatt"
-                    android:textSize="40dp"
+                    android:text="@string/title_smartwatt"
+                    android:textSize="40sp"
+                    android:textColor="@color/gray_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -57,9 +58,9 @@
                     android:layout_weight="1"
                     android:background="@color/login_title"
                     android:gravity="center"
-                    android:text="Creación de cuentas"
+                    android:text="@string/create_account"
                     android:textColor="@color/white"
-                    android:textSize="25dp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -71,6 +72,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/redirect_text_sign"
+                    android:textColor="@color/gray_text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -94,13 +96,17 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginTop="5dp"
-
+                    app:boxStrokeColor="@color/gray_text"
+                    app:hintTextColor="@color/gray_text"
+                    app:endIconTint="@color/gray_text"
+                    app:cursorColor="@color/gray_text"
                     >
-
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nameinpt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textColorHint="@color/gray_text"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -111,13 +117,18 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/name">
+                    app:layout_constraintTop_toBottomOf="@id/name"
+                    app:boxStrokeColor="@color/gray_text"
+                    app:hintTextColor="@color/gray_text"
+                    app:endIconTint="@color/gray_text"
+                    app:cursorColor="@color/gray_text"
+                    >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/emailinpt"
-
+                        android:textColorHint="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,13 +142,17 @@
                     android:layout_marginTop="20dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/email"
-
+                    app:boxStrokeColor="@color/gray_text"
+                    app:hintTextColor="@color/gray_text"
+                    app:endIconTint="@color/gray_text"
+                    app:cursorColor="@color/gray_text"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/codigoinpt"
+                        android:textColorHint="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,6 +165,10 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/codigo"
                     android:layout_marginTop="20dp"
+                    app:boxStrokeColor="@color/gray_text"
+                    app:hintTextColor="@color/gray_text"
+                    app:endIconTint="@color/gray_text"
+                    app:cursorColor="@color/gray_text"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -157,6 +176,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/passwordinpt"
                         android:inputType="textPassword"
+                        android:textColorHint="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,6 +194,7 @@
                     android:layout_marginTop="10dp"
                     android:backgroundTint="@color/buttons_login_sign_color"
                     android:text="@string/link_sign"
+                    android:textColor="@color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -193,10 +214,11 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Regresar"
+                android:text="@string/btn_back"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/buttons_login_sign_color"
                 android:id="@+id/returnbtn"
+                android:textColor="@color/white"
                 />
         </LinearLayout>
     </ScrollView>
