@@ -13,6 +13,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // Aquí puedes inicializar las vistas y configurar los listeners específicos de la pantalla de inicio
+        // Agregar lógica específica para el fragmento home.xml
     }
 }
