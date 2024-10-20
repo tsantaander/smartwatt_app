@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Color de fondo general (más oscuro) -->
+    <color name="d_gray_background">#121212</color>
+
+    <!-- Color de texto principal (blanco) -->
+    <color name="d_black">#FFFFFF</color>
+
+    <!-- Color de texto secundario (gris claro) -->
+    <color name="d_gray_text">#B0BEC5</color>
+
+    <!-- Color del acento amarillo para el logo y otros elementos (ligeramente más oscuro para no ser demasiado brillante) -->
+    <color name="d_yellow_accent">#FFB300</color>
+
+    <!-- Color del texto blanco (ahora negro para contrastar con fondos claros) -->
+    <color name="d_white">#000000</color>
+
+    <!-- Color del texto negro ligero para subtítulos (ahora gris claro) -->
+    <color name="d_light_black">#E0E0E0</color>
+
+    <!-- Color del borde o fondo del MaterialCardView (gris oscuro) -->
+    <color name="d_card_background">#1E1E1E</color>
+
+    <!-- Color de la barra de navegación inferior (gris muy oscuro) -->
+    <color name="d_navigation_bar_background">#1A1A1A</color>
+
+    <!-- Color de íconos de navegación no seleccionados (gris medio) -->
+    <color name="d_nav_icon_unselected">#757575</color>
+
+    <!-- Color de fondo de icono seleccionado (amarillo más oscuro) -->
+    <color name="d_nav_back_selected">#C99700</color>
+
+    <!-- Color de íconos de navegación seleccionados (blanco) -->
+    <color name="d_nav_icon_selected">#FFFFFF</color>
+
+    <!-- Color del efecto ripple (blanco con opacidad) -->
+    <color name="d_bottom_nav_ripple_color">#33FFFFFF</color>
+
+    <!-- Color de la barra de progreso de costo (verde más oscuro) -->
+    <color name="d_progress_bar_cost">#2E7D32</color>
+
+    <!-- Color de la barra de progreso de límite (naranja más oscuro) -->
+    <color name="d_progress_bar_limit">#E65100</color>
+
+    <!-- Color del título de inicio de sesión (naranja más claro para mejorar la visibilidad) -->
+    <color name="d_login_title">#FF7043</color>
+
+    <!-- Color de los botones de inicio de sesión y registro (rojo más claro) -->
+    <color name="d_buttons_login_sign_color">#D32F2F</color>
+</resources>
