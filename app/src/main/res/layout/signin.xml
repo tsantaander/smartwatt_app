@@ -82,15 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/name"
-                    />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/name"
@@ -100,22 +93,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="5dp"
 
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameinpt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/email_hint"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/email"
-                    />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/email"
@@ -129,16 +115,11 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_height="wrap_content"
+                        android:id="@+id/emailinpt"
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/medidor_title_sign"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/codigo"
-                    />
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -155,15 +136,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/codigoinpt"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/password_hint"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toTopOf="@id/password"
-                    />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/password"
@@ -178,7 +154,10 @@
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:id="@+id/passwordinpt"
+                        android:inputType="textPassword"
+                        />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -188,6 +167,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:id="@+id/siginbtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -197,7 +177,27 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/TextResultSigIn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/siginbtn"
+                    android:textSize="15sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="15dp"
+                    />
             </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Regresar"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/buttons_login_sign_color"
+                android:id="@+id/returnbtn"
+                />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

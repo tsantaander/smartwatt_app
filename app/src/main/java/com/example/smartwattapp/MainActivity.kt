@@ -18,10 +18,19 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val button = findViewById<Button>(R.id.siginbtn);
-        button.setOnClickListener {
+        val signBtn = findViewById<Button>(R.id.siginbtn);
+        val loginBtn = findViewById<Button>(R.id.logbtn);
+
+        signBtn.setOnClickListener { // Acceso al registro de cuentas
             val intent = Intent(this , SignInActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
+        }
+
+        loginBtn.setOnClickListener{ // Acceso al inicio de sesión
+            val intent = Intent(this , LogInActivity::class.java);
+            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            startActivity(intent);
         }
     }
 }

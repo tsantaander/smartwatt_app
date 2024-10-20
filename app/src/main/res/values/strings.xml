@@ -17,13 +17,13 @@
     <string name="text_analisis">Análisis</string>
     <string name="text_panel">Panel</string>
     <string name="link_sign">Registrarse</string>
-    <string name="password_hint_sign">Constraseña123.</string>
+    <string name="password_hint_sign">Contraseña</string>
     <string name="password_hint">Contraseña</string>
-    <string name="medidor_hint_sign">34KDJFKFL</string>
+    <string name="medidor_hint_sign">Codigo de medidor</string>
     <string name="medidor_title_sign">Codigo medidor</string>
-    <string name="email_hint_sign">example@gmail.com</string>
+    <string name="email_hint_sign">Correo electrónico</string>
     <string name="email_hint">Correo electrónico</string>
-    <string name="name_hint_sign">John Doe</string>
+    <string name="name_hint_sign">Nombre</string>
     <string name="login_title_text">Inicio de sesión</string>
     <string name="login_button_text">Iniciar sesión</string>
     <string name="return_panel_conf">Volver</string>
@@ -38,4 +38,17 @@
     <string name="text_grafica">Gráfica de consumo</string>
     <string name="descripcion_grafica">grafica de consumo</string>
     <string name="a_pagar">A pagar</string>
+    <string name="intro_app">¡Bienvenido a SmartWatt, la app que te permite controlar tus gastos de luz en tiempo real! 🌟</string>
+    <string name="body1_app">
+        ¿Te imaginas saber exactamente cuánta energía consumes al instante y cuánto dinero estás
+        gastando sin esperar la factura? Con SmartWatt, tienes el poder de monitorear tu consumo
+        eléctrico desde la comodidad de tu teléfono, ayudándote a ahorrar de manera inteligente.
+    </string>
+    <string name="body2_app">
+        Visualiza gráficos dinámicos, recibe alertas personalizadas y descubre qué electrodomésticos
+        están inflando tu factura. Empieza a tomar decisiones más sostenibles hoy mismo con la
+        información precisa que LuzMonitor te brinda al instante. ¡Tu energía, bajo control! ⚡📊
+    </string>
+    <string name="login">Acceder</string>
+    <string name="sign">Registrarse</string>
 </resources>
