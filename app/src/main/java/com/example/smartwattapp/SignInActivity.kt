@@ -33,14 +33,17 @@ class SignInActivity : AppCompatActivity() {
             val SiginBtn = findViewById<Button>(R.id.siginbtn);
             val TextResult = findViewById<TextView>(R.id.TextResultSigIn);
             val returnBtn = findViewById<Button>(R.id.returnbtn);
+
             SiginBtn.setOnClickListener{
                 val LoginIntent = Intent(this , LogInActivity::class.java);
                 LoginIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
                 val sigin_result : Boolean = validate_datas_inpts(LoginIntent)
                 if (sigin_result){
+                    returnBtn.isEnabled = false;
                     applyFadeInOutEffect(TextResult , "Cuenta creada exitosamente!\nEspere un momento ..." , R.drawable.bordered_textview_success , visibleDuration = 2000 , CallBack = {startActivity(LoginIntent)});
                 }
             }
+
             returnBtn.setOnClickListener{
                 val intent = Intent(this , MainActivity::class.java);
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
