@@ -9,6 +9,9 @@
     <!-- Color de texto secundario (gris) -->
     <color name="gray_text">#1E293B</color>
 
+    <!-- Color de texto de inputs -->
+    <color name="gray_input">#D3D3D3</color>
+
     <!-- Color del acento amarillo para el logo y otros elementos -->
     <color name="yellow_accent">#FFC107</color>
 

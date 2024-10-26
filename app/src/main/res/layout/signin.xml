@@ -100,12 +100,17 @@
                     app:hintTextColor="@color/gray_text"
                     app:endIconTint="@color/gray_text"
                     app:cursorColor="@color/gray_text"
+                    app:prefixTextColor="@color/gray_text"
+                    app:prefixTextAppearance="@color/gray_text"
+                    app:suffixTextColor="@color/gray_text"
+                    app:counterTextColor="@color/gray_text"
                     >
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/nameinpt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textColorHint="@color/gray_text"
+                        android:textColor="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -129,6 +134,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/emailinpt"
                         android:textColorHint="@color/gray_text"
+                        android:textColor="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,6 +159,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/codigoinpt"
                         android:textColorHint="@color/gray_text"
+                        android:textColor="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -177,6 +184,7 @@
                         android:id="@+id/passwordinpt"
                         android:inputType="textPassword"
                         android:textColorHint="@color/gray_text"
+                        android:textColor="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
 
