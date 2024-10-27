@@ -27,7 +27,9 @@
     <string name="login_title_text">Inicio de sesión</string>
     <string name="login_button_text">Iniciar sesión</string>
     <string name="return_panel_conf">Volver</string>
+    <string name="return_panel_home">Salir</string>
     <string name="title_conf">Ajustes</string>
+    <string name="title_home">Menu Principal</string>
     <string name="dark_mode_text">Modo Oscuro</string>
     <string name="consume_alert">Alertas de consumo</string>
     <string name="ahorro_energia_op">Modo ahorro de energía</string>
