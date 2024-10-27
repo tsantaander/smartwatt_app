@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
-import java.io.Serializable
 
 class SignInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +59,8 @@ class SignInActivity : AppCompatActivity() {
         val NombreInpt = findViewById<TextInputEditText>(R.id.nameinpt).text.toString();
         val EmailInpt = findViewById<TextInputEditText>(R.id.emailinpt).text.toString();
         val CodeInpt = findViewById<TextInputEditText>(R.id.codigoinpt).text.toString();
-        val PasswordInpt = findViewById<TextInputEditText>(R.id.passwordinpt).text.toString();
+        val PasswordInpt1 = findViewById<TextInputEditText>(R.id.passwordinpt1).text.toString();
+        val PasswordInpt2 = findViewById<TextInputEditText>(R.id.passwordinpt2).text.toString();
         val TextResult = findViewById<TextView>(R.id.TextResultSigIn);
 
         val generalErrors : Map<String , String> = mapOf(
@@ -68,10 +68,12 @@ class SignInActivity : AppCompatActivity() {
             "nombreError" to "➤ El nombre debe poseer menos de 30 caracteres y solo poseer letras!",
             "emailError" to "➤ El email es inválido!",
             "codeError" to "➤ El codigo es invalido debe poseer 10 numeros!",
-            "passwordError" to "➤ La contraseña debe tener \n una longitud mayor a 8 caracteres \n\n➤ Debe contener letras mayusculas \n\n➤ Debe contener letras minuscular \n\n➤ Debe contener números \n\n➤ Debe contener caracteres \n especiales como & , . , ! , etc."
+            "passwordError" to "➤ La contraseña debe tener \n una longitud mayor a 8 caracteres \n\n➤ Debe contener letras mayusculas \n\n➤ Debe contener letras minuscular \n\n➤ Debe contener números \n\n➤ Debe contener caracteres \n especiales como & , . , ! , etc.",
+            "passwordIncoincidenceError" to "➤ Las contraseñas no coinciden",
+            "RegisterError" to "➤ El email con el que te intentas \n registrar ya existe en nuestro sistema \n O el codigo del medidor ya se encuentra registrado"
         )
 
-        if (NombreInpt.isEmpty() || EmailInpt.isEmpty() || CodeInpt.isEmpty() || PasswordInpt.isEmpty()){
+        if (NombreInpt.isEmpty() || EmailInpt.isEmpty() || CodeInpt.isEmpty() || PasswordInpt1.isEmpty()){
             Log.v("Error Sign" , "Te faltan campos por completar");
             applyFadeInOutEffect(TextResult , generalErrors.get("emptyError") , R.drawable.bordered_textview_error);
             return false
@@ -97,18 +99,36 @@ class SignInActivity : AppCompatActivity() {
             return false
         }
         // Validar si la contraseña contiene al menos una letra mayúscula, una minúscula, un número y un carácter especial
-        if (PasswordInpt.length < 8 || !PasswordInpt.matches(Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&.,#$-+¿¡~])[A-Za-z\\d@\$!%*?&.,#$-+¿¡~]{8,}$"))) {
+        if (PasswordInpt1.length < 8 || !PasswordInpt1.matches(Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@\$!%*?&.,#$-+¿¡~])[A-Za-z\\d@\$!%*?&.,#$-+¿¡~]{8,}$"))) {
             Log.v("Error Sign", "La contraseña debe tener al menos una letra mayúscula, una minúscula, un número y un carácter especial")
             applyFadeInOutEffect(TextResult , generalErrors.get("passwordError") , R.drawable.bordered_textview_error , visibleDuration = 5500);
             return false
         }
-        val newUserData = HashMap<String , String>();
-        intentLogIn.putExtra("NOMBRE" , NombreInpt);
-        intentLogIn.putExtra("CORREO" , EmailInpt);
-        intentLogIn.putExtra("CODIGO" , CodeInpt);
-        intentLogIn.putExtra("PASSWORD" , PasswordInpt);
-        return true
+        if (PasswordInpt1 != PasswordInpt2){
+            Log.v("Error Sign", "La contraseña debe tener al menos una letra mayúscula, una minúscula, un número y un carácter especial")
+            applyFadeInOutEffect(TextResult , generalErrors.get("passwordIncoincidenceError") , R.drawable.bordered_textview_error , visibleDuration = 5500);
+            return false
+        }
 
+        val newUserData = HashMap<String , String>();
+        newUserData["nombre"] = NombreInpt;
+        newUserData["codigo"] = CodeInpt;
+        newUserData["password"] = PasswordInpt2;
+        newUserData["enable"] = "activo"; //Campo para ver que el usuario este activo o no.
+        newUserData["rol"] = "user";
+        val addOnDb : Boolean = Database.createUser(EmailInpt , newUserData);
+        Log.e("Current DB" , "${Database.data}");
+        return if (addOnDb){
+            return true
+        }else{
+            applyFadeInOutEffect(TextResult , generalErrors.get("RegisterError") , R.drawable.bordered_textview_error , visibleDuration = 5500);
+            return false
+        }
+        //Enviamos datos al intent
+        //intentLogIn.putExtra("NOMBRE" , NombreInpt);
+        //intentLogIn.putExtra("CORREO" , EmailInpt);
+        //intentLogIn.putExtra("CODIGO" , CodeInpt);
+        //intentLogIn.putExtra("PASSWORD" , PasswordInpt);
     }
     private fun applyFadeInOutEffect(
         textView: TextView,

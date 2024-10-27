@@ -162,9 +162,8 @@
                         android:textColor="@color/gray_text"
                         />
                 </com.google.android.material.textfield.TextInputLayout>
-
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/password"
+                    android:id="@+id/password1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/password_hint_sign"
@@ -181,7 +180,31 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/passwordinpt"
+                        android:id="@+id/passwordinpt1"
+                        android:inputType="textPassword"
+                        android:textColorHint="@color/gray_text"
+                        />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/password2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/password_hint_sign"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/password1"
+                    android:layout_marginTop="20dp"
+                    app:boxStrokeColor="@color/gray_text"
+                    app:hintTextColor="@color/gray_text"
+                    app:endIconTint="@color/gray_text"
+                    app:cursorColor="@color/gray_text"
+                    >
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/passwordinpt2"
                         android:inputType="textPassword"
                         android:textColorHint="@color/gray_text"
                         android:textColor="@color/gray_text"

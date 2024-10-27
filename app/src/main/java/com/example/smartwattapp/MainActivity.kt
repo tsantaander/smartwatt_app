@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         signBtn.setOnClickListener { // Acceso al registro de cuentas
             val intent = Intent(this , SignInActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
+            //intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
             startActivity(intent)
         }
 

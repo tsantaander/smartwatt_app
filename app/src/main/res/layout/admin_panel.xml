@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:background="@drawable/fondo1">
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1"
+        android:padding="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <!-- Encabezados de la Tabla -->
+        <TableRow>
+            <TextView
+                android:text="Email"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:text="Nombre"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:text="Código"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+
+            <TextView
+                android:text="Password"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                />
+        </TableRow>
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
