@@ -39,3 +39,4 @@ replay_pid*
 .externalNativeBuild
 .cxx
 local.properties
+gradle/libs.versions.toml
