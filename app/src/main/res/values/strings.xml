@@ -65,4 +65,13 @@
     <string name="btn_back">Regresar</string>
     <string name="inicio_desc_background">fondo de inicio de sesión</string>
     <string name="create_account">Creación de cuentas</string>
+    <string name="usuarios_registrados">Usuarios Registrados</string>
+    <string name="email">Email</string>
+    <string name="nombre">Nombre</string>
+    <string name="code">Código de medidor</string>
+    <string name="password">Contraseña</string>
+    <string name="tittle_users">Usuarios Registrados</string>
+    <string name="button_edit">Editar</string>
+    <string name="button_eliminar">Eliminar</string>
+    <string name="button_active_desactivate">Desactivar / Activar</string>
 </resources>

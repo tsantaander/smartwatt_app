@@ -28,7 +28,8 @@ object Database {
             "nombre" to "Administrador" ,
             "password" to "admin123." ,
             "rol" to "admin",
-            "codigo" to ""
+            "codigo" to "",
+            "enable" to "activo"
             ))
     );
 
@@ -45,6 +46,11 @@ object Database {
         return true
     }
     fun createUser(email : String , userDatas : HashMap<String , String>): Boolean{
+
+        // Si el rol que se intenta asignar es admin no se permite el registro
+        if (userDatas["rol"]=="admin") {
+            return false
+        }
         //Si existe un email en la DB igual al con el que se intenta asociar el usuario
         //Entonces la funcion retornara false debido a que no fue correcta la inserción
         //si no existe un email asociado a un usuario en la db se podra agregar el usuario al hashmap
@@ -79,5 +85,68 @@ object Database {
         }else{
             false
         }
+    }
+
+    // Función para eliminar a un usuario
+    fun deleteUser(email: String): Boolean {
+        // No permitir eliminar al administrador
+        if (email == "admin@gmail.com") {
+            return false
+        }
+        // Si el usuario existe, elimínalo y retorna true
+        return if (data.containsKey(email)) {
+            data.remove(email)
+            true
+        } else {
+            false
+        }
+    }
+
+
+    // Función para cambiar el estado de un usuario (activo/deshabilitado) por su email
+    fun toggleUserStatus(email: String): Boolean {
+        // No permitir cambiar estado del admin
+        if (email == "admin@gmail.com") {
+            return false
+        }
+
+        val userDatas = data[email] ?: return false
+        val currentStatus = userDatas["enable"] ?: "activo"
+        userDatas["enable"] = if (currentStatus == "activo") "deshabilitado" else "activo"
+        return true
+    }
+
+    fun updateUserField(email: String, field: String, value: String): Boolean {
+        // No permitir modificar al admin
+        if (email == "admin@gmail.com") {
+            return false
+        }
+        val userDatas = data[email] ?: return false
+        // No permitir cambiar el rol a admin
+        if (field == "rol" && value == "admin") {
+            return false
+        }
+        // Verificación especial para códigos de Arduino
+        if (field == "codigo" && value != userDatas["codigo"]) {
+            if (!verifyUniqueCode(value)) {
+                return false
+            }
+        }
+        userDatas[field] = value
+        return true
+    }
+
+    // Función auxiliar para obtener usuarios activos
+    fun getActiveUsers(): List<Pair<String, HashMap<String, String>>> {
+        return data.filter { (_, userData) ->
+            userData["enable"] == "activo"
+        }.toList()
+    }
+
+    // Función auxiliar para obtener usuarios por rol
+    fun getUsersByRole(role: String): List<Pair<String, HashMap<String, String>>> {
+        return data.filter { (_, userData) ->
+            userData["rol"] == role
+        }.toList()
     }
 }

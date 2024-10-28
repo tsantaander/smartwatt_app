@@ -1,53 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
     android:id="@+id/main"
-    android:background="@drawable/fondo1">
-    <TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/tableLayout"
+    android:background="@color/gray_background"
+    >
+
+    <!-- Título de la tabla -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="1"
-        android:padding="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/tittle_users"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:paddingVertical="20dp"
+        android:gravity="center"
+        android:textColor="@color/gray_text"
+        />
+
+    <!-- Contenedor con scroll horizontal -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbarThumbHorizontal="@drawable/custom_scrollbar"
+        android:scrollbars="horizontal"
         >
 
-        <!-- Encabezados de la Tabla -->
-        <TableRow>
-            <TextView
-                android:text="Email"
-                android:padding="8dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
+        <!-- Componente de tabla -->
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:paddingBottom="15dp"
+            android:paddingHorizontal="20dp"
+            >
 
-            <TextView
-                android:text="Nombre"
-                android:padding="8dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
+            <!-- Encabezados de la tabla -->
+            <TableRow>
 
-            <TextView
-                android:text="Código"
-                android:padding="8dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/email"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_text"
+                    android:textColorHint="@color/gray_text"
+                    />
 
-            <TextView
-                android:text="Password"
-                android:padding="8dp"
-                android:textStyle="bold"
-                android:gravity="center"
-                />
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="@string/nombre"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_text"
+                    />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/code"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_text"
+                    />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/password"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_text"
+                    />
+            </TableRow>
+        </TableLayout>
+    </HorizontalScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_edit"
+            android:layout_marginEnd="8dp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorThumbActive"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/toggleButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/button_active_desactivate"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/colorTrackActive"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingHorizontal="55dp"
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/deleteButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/buttons_login_sign_color"
+            android:text="@string/button_eliminar"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+
+</LinearLayout>
