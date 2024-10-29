@@ -98,7 +98,11 @@ class LogInActivity : AppCompatActivity() {
         }
         val validPassword : Pair<Boolean , String?> = validatePassword(emailTry , passwordTry);
         if (!validPassword.first){
+            if (validPassword.second == "deshabilitado") {
+                applyFadeInOutEffect(textResult, "El usuario está deshabilitado.", R.drawable.bordered_textview_error , visibleDuration = 2000 )
+            } else {
             applyFadeInOutEffect(textResult , "La contraseña ingresada es incorrecta." ,R.drawable.bordered_textview_error , visibleDuration = 2000);
+            }
             return Pair(false , null)
         }
         return validPassword
@@ -109,9 +113,14 @@ class LogInActivity : AppCompatActivity() {
         // Esta función retorna true y el rol del usuario que se logeo
         val modelUserByEmail : HashMap<String , String>? = Database.getUser(correo);
         if (!modelUserByEmail.isNullOrEmpty()){
-            val realPasswordUser : String? = modelUserByEmail.get("password");
+            val realPasswordUser : String? = modelUserByEmail.get("password")
+            val isUserEnabled: Boolean = modelUserByEmail["enable"] == "activo"
+            if (!isUserEnabled) {
+                return Pair(false, "deshabilitado") // Usuario Deshabilitado
+            }
             return Pair(testPassword == realPasswordUser , modelUserByEmail.get("rol"))
         }
+
         return Pair(false , null)
     }
 
