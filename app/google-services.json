@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "171180354660",
+    "project_id": "smarttwatt-ed730",
+    "storage_bucket": "smarttwatt-ed730.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:171180354660:android:81d6b2482f0101d2ad8371",
+        "android_client_info": {
+          "package_name": "com.example.smartwattapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAL7Tjot8nFFrMk-r5kEoDC2Qew63XFNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

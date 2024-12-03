@@ -17,7 +17,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.smartwattapp.Database; // Base de datos global
+import com.example.smartwattapp.databinding.LoginBinding
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+
 
 class LogInActivity : AppCompatActivity() {
     /// Se ha creado un valor privado dentro de la clase para simular una base de datos
@@ -32,12 +37,16 @@ class LogInActivity : AppCompatActivity() {
     //      ...
     //      )
     // }
-    private val DataBase : HashMap<String , HashMap<String , String>> = HashMap();
+    private lateinit var binding : LoginBinding;
+    private lateinit var auth : FirebaseAuth;
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = LoginBinding.inflate(layoutInflater);
+        auth = Firebase.auth;
+        setContentView(binding.root);
         enableEdgeToEdge()
-        setContentView(R.layout.login)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -48,20 +57,20 @@ class LogInActivity : AppCompatActivity() {
             // En busca de un nuevo usuario registrado.
             val loginBtn = findViewById<Button>(R.id.loginbtn);
             val returnBtn = findViewById<Button>(R.id.returnbtn);
-
+            //val currentUser = auth.currentUser;
+            //Log.v("Fire Auth" , currentUser.toString());
 
             loginBtn.setOnClickListener{
-                val login : Pair<Boolean , String?> = tryLogin();
-                Log.e("Login trying result: " , "${login}");
                 val textResult = findViewById<TextView>(R.id.loginResult);
-                if (login.first){
-                    if (login.second == "user"){
+                val emailTry : String = findViewById<TextInputEditText>(R.id.emailinpt).text.toString();
+                val passwordTry : String = findViewById<TextInputEditText>(R.id.passwordinpt).text.toString();
+                //Se debe hacer login aqui con Firabas
+                auth.signInWithEmailAndPassword(emailTry , passwordTry).addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
                         val home : Intent = Intent(this , HomeActivity::class.java);
                         applyFadeInOutEffect(textResult , "Datos validados correctamente\nEspere un momento..." ,R.drawable.bordered_textview_success , visibleDuration = 2000 , CallBack = {startActivity(home)});
-                    }else if (login.second == "admin"){
-                        val adminPanel : Intent = Intent(this , AdminPanelActivity::class.java)
-                        applyFadeInOutEffect(textResult , "Datos validados correctamente\nEspere un momento..." ,R.drawable.bordered_textview_success , visibleDuration = 2000 , CallBack = {startActivity(adminPanel)});
-
+                    }else {
+                        applyFadeInOutEffect(textResult , task.exception.toString() , R.drawable.bordered_textview_error , visibleDuration = 2000)
                     }
                 }
             }
@@ -74,54 +83,6 @@ class LogInActivity : AppCompatActivity() {
         }catch (e : Exception){
             Toast.makeText(this , "Hubo un error :(" , Toast.LENGTH_SHORT).show();
         }
-    }
-    private fun tryLogin() : Pair<Boolean , String?> {
-        val textResult = findViewById<TextView>(R.id.loginResult);
-        val emailTry : String = findViewById<TextInputEditText>(R.id.emailinpt).text.toString();
-        val passwordTry : String = findViewById<TextInputEditText>(R.id.passwordinpt).text.toString();
-
-        if (emailTry.isEmpty() || passwordTry.isEmpty()){
-            applyFadeInOutEffect(textResult , "Debe rellenar todos los campos" ,R.drawable.bordered_textview_error , visibleDuration = 2000);
-            return Pair(false , null)
-        }
-
-        if (!emailTry.matches(Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\$")) || emailTry.isEmpty()){
-            applyFadeInOutEffect(textResult , "Debe ingresar un email valido" ,R.drawable.bordered_textview_error , visibleDuration = 2000);
-            return Pair(false , null)
-        }
-
-        //Verificamos si el correo esta registrado en la base de datos.
-        val existEmail : Boolean = Database.data.containsKey(emailTry);
-        if (!existEmail){
-            applyFadeInOutEffect(textResult , "El correo registrado no \nesta registrado en sistema." ,R.drawable.bordered_textview_error , visibleDuration = 2000);
-            return Pair(false , null)
-        }
-        val validPassword : Pair<Boolean , String?> = validatePassword(emailTry , passwordTry);
-        if (!validPassword.first){
-            if (validPassword.second == "deshabilitado") {
-                applyFadeInOutEffect(textResult, "El usuario está deshabilitado.", R.drawable.bordered_textview_error , visibleDuration = 2000 )
-            } else {
-            applyFadeInOutEffect(textResult , "La contraseña ingresada es incorrecta." ,R.drawable.bordered_textview_error , visibleDuration = 2000);
-            }
-            return Pair(false , null)
-        }
-        return validPassword
-    }
-    private fun validatePassword(correo : String , testPassword : String) : Pair<Boolean , String?>{
-        // Función privada encargada de recuperar el modelo del usuario en la base de datos y
-        // validar si el password con el que se logea coincide con el registrado en la base de datos.
-        // Esta función retorna true y el rol del usuario que se logeo
-        val modelUserByEmail : HashMap<String , String>? = Database.getUser(correo);
-        if (!modelUserByEmail.isNullOrEmpty()){
-            val realPasswordUser : String? = modelUserByEmail.get("password")
-            val isUserEnabled: Boolean = modelUserByEmail["enable"] == "activo"
-            if (!isUserEnabled) {
-                return Pair(false, "deshabilitado") // Usuario Deshabilitado
-            }
-            return Pair(testPassword == realPasswordUser , modelUserByEmail.get("rol"))
-        }
-
-        return Pair(false , null)
     }
 
     private fun applyFadeInOutEffect(

@@ -1,11 +1,20 @@
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.smartwattapp.HomeFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.lifecycleScope
+import com.example.smartwattapp.Models.Medidor
 import com.example.smartwattapp.R
+import com.google.firebase.Firebase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.tasks.await
 
 class AnalisisFragment : Fragment() {
 
@@ -17,6 +26,7 @@ class AnalisisFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val topBar = view.findViewById<View>(R.id.top_bar)
         topBar.findViewById<View>(R.id.return_icon).setOnClickListener {

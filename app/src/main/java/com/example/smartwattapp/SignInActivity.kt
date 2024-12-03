@@ -16,13 +16,28 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.smartwattapp.Models.Medidor
 import com.google.android.material.textfield.TextInputEditText
+import com.example.smartwattapp.databinding.SigninBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class SignInActivity : AppCompatActivity() {
+
+    private lateinit var binding: SigninBinding;
+    private lateinit var auth: FirebaseAuth;
+    private lateinit var database : DatabaseReference;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = SigninBinding.inflate(layoutInflater);
+        auth = Firebase.auth;
+        database = FirebaseDatabase.getInstance().getReference("Medidor"); // Instanciamos la colección Medidor
+        setContentView(binding.root);
         enableEdgeToEdge()
-        setContentView(R.layout.signin)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -36,13 +51,30 @@ class SignInActivity : AppCompatActivity() {
             SiginBtn.setOnClickListener{
                 val LoginIntent = Intent(this , LogInActivity::class.java);
                 LoginIntent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT;
-                val sigin_result : Boolean = validate_datas_inpts(LoginIntent)
-                if (sigin_result){
+                val sigin_result : Boolean = validate_datas_inpts(LoginIntent);
+                if (sigin_result){ // Los inputs son validos por ende podemos crear el usuario en FireBase
                     returnBtn.isEnabled = false;
-                    applyFadeInOutEffect(TextResult , "Cuenta creada exitosamente!\nEspere un momento ..." , R.drawable.bordered_textview_success , visibleDuration = 2000 , CallBack = {startActivity(LoginIntent)});
+                    val EmailInpt = findViewById<TextInputEditText>(R.id.emailinpt).text.toString();
+                    val PasswordInpt1 = findViewById<TextInputEditText>(R.id.passwordinpt1).text.toString();
+                    val CodeInpt = findViewById<TextInputEditText>(R.id.codigoinpt).text.toString();// Se debe crear una colección Medidor con Un nuevo medidor y su codigo.
+                    auth.createUserWithEmailAndPassword(EmailInpt , PasswordInpt1).addOnCompleteListener(this) {task ->
+                        if (task.isSuccessful){
+                            val userId : String? = auth.currentUser?.uid;
+                            val idMedidor : String? = database.child("Medidor").push().key;
+                            val newMedidor : Medidor = Medidor(id = idMedidor , user = userId , code = CodeInpt);
+                            database.child(idMedidor!!).setValue(newMedidor).addOnCompleteListener(this){ task ->
+                                if (task.isSuccessful){
+                                    applyFadeInOutEffect(TextResult , "La cuenta y el medidor se han registrado correctamente." , R.drawable.bordered_textview_success , visibleDuration = 2000 , CallBack = {startActivity(LoginIntent)});
+                                }else{
+                                    applyFadeInOutEffect(TextResult , task.exception.toString() , R.drawable.bordered_textview_error , visibleDuration = 2000);
+                                }
+                            }
+                        }else{
+                            applyFadeInOutEffect(TextResult , task.exception.toString() , R.drawable.bordered_textview_error , visibleDuration = 2000);
+                        }
+                    }
                 }
             }
-
             returnBtn.setOnClickListener{
                 val intent = Intent(this , MainActivity::class.java);
                 intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT
@@ -56,9 +88,8 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun validate_datas_inpts(intentLogIn : Intent) : Boolean {
-        val NombreInpt = findViewById<TextInputEditText>(R.id.nameinpt).text.toString();
         val EmailInpt = findViewById<TextInputEditText>(R.id.emailinpt).text.toString();
-        val CodeInpt = findViewById<TextInputEditText>(R.id.codigoinpt).text.toString();
+        val CodeInpt = findViewById<TextInputEditText>(R.id.codigoinpt).text.toString();// Se debe crear una colección Medidor con Un nuevo medidor y su codigo.
         val PasswordInpt1 = findViewById<TextInputEditText>(R.id.passwordinpt1).text.toString();
         val PasswordInpt2 = findViewById<TextInputEditText>(R.id.passwordinpt2).text.toString();
         val TextResult = findViewById<TextView>(R.id.TextResultSigIn);
@@ -73,21 +104,6 @@ class SignInActivity : AppCompatActivity() {
             "RegisterError" to "➤ El email con el que te intentas \n registrar ya existe en nuestro sistema \n O el codigo del medidor ya se encuentra registrado"
         )
 
-        if (NombreInpt.isEmpty() || EmailInpt.isEmpty() || CodeInpt.isEmpty() || PasswordInpt1.isEmpty()){
-            Log.v("Error Sign" , "Te faltan campos por completar");
-            applyFadeInOutEffect(TextResult , generalErrors.get("emptyError") , R.drawable.bordered_textview_error);
-            return false
-        }
-        if (NombreInpt.length > 30){ // Caso en el que la longitud del nombre ingresado sea mayor a 30 caracteres
-            Log.v("Error Sign" , "El nombre debe poseer una longitud menor a 30 caracteres");
-            applyFadeInOutEffect(TextResult , generalErrors.get("nombreError") , R.drawable.bordered_textview_error);
-            return false
-        }
-        if (!NombreInpt.matches(Regex("^[A-Za-záéíóúÁÉÍÓÚñÑ ]+$"))) {
-            Log.v("Error Sign", "El nombre solo debe contener letras")
-            applyFadeInOutEffect(TextResult , generalErrors.get("nombreError") , R.drawable.bordered_textview_error);
-            return false
-        }
         if (!EmailInpt.matches(Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}\$"))){ //Condicion en caso que el correo ingresado no haga match con la expresión regular propuesta.
             Log.v("Error Sign", "El Correo es invalido")
             applyFadeInOutEffect(TextResult , generalErrors.get("emailError") , R.drawable.bordered_textview_error);
@@ -109,26 +125,7 @@ class SignInActivity : AppCompatActivity() {
             applyFadeInOutEffect(TextResult , generalErrors.get("passwordIncoincidenceError") , R.drawable.bordered_textview_error , visibleDuration = 5500);
             return false
         }
-
-        val newUserData = HashMap<String , String>();
-        newUserData["nombre"] = NombreInpt;
-        newUserData["codigo"] = CodeInpt;
-        newUserData["password"] = PasswordInpt2;
-        newUserData["enable"] = "activo"; //Campo para ver que el usuario este activo o no.
-        newUserData["rol"] = "user";
-        val addOnDb : Boolean = Database.createUser(EmailInpt , newUserData);
-        Log.e("Current DB" , "${Database.data}");
-        return if (addOnDb){
-            return true
-        }else{
-            applyFadeInOutEffect(TextResult , generalErrors.get("RegisterError") , R.drawable.bordered_textview_error , visibleDuration = 5500);
-            return false
-        }
-        //Enviamos datos al intent
-        //intentLogIn.putExtra("NOMBRE" , NombreInpt);
-        //intentLogIn.putExtra("CORREO" , EmailInpt);
-        //intentLogIn.putExtra("CODIGO" , CodeInpt);
-        //intentLogIn.putExtra("PASSWORD" , PasswordInpt);
+        return true
     }
     private fun applyFadeInOutEffect(
         textView: TextView,
