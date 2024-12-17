@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
         }
 
         // Usar orderByChild para optimizar la consulta
-        consumoEnergeticoReference
+        consumoColecction
             .orderByChild("timestamp")  // Añade este campo a tu modelo
             .limitToLast(1)  // Obtener solo el último registro
             .addValueEventListener(consumoEnergeticoListener)
@@ -132,6 +132,6 @@ class HomeFragment : Fragment() {
     // Importante: remover el listener cuando el fragmento se destruya
     override fun onDestroyView() {
         super.onDestroyView()
-        consumoEnergeticoReference.removeEventListener(consumoEnergeticoListener)
+        consumoColecction.removeEventListener(consumoEnergeticoListener)
     }
 }
