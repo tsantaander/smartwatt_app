@@ -151,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="10dp"
-                android:text="@string/text_consumo"
+
                 android:textColor="@color/gray_text"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="@string/consumo_voltaje"
+
                 android:textColor="@color/gray_text"
                 android:textSize="28sp"
                 android:textStyle="bold" />
@@ -260,7 +260,7 @@
                 android:id="@+id/tv_current_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/consumo_corriente"
+
                 android:textColor="@color/gray_text"
                 android:textSize="28sp"
                 android:textStyle="bold"
@@ -308,7 +308,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/consumo_potencia"
+
                 android:textColor="@color/gray_text"
                 android:textSize="28sp"
                 android:textStyle="bold" />
