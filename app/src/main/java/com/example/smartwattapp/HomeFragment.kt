@@ -54,43 +54,67 @@ class HomeFragment : Fragment() {
 
         // Obtener datos del medidor y consumo
         obtenerMedidorDelUsuario()
-        escucharDatosConsumoEnTiempoReal()
+        obtenerDatosConsumoEnTiempoReal()
     }
 
-    private fun escucharDatosConsumoEnTiempoReal() {
+    private fun obtenerDatosConsumoEnTiempoReal() {
         consumoEnergeticoListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                // Encontrar el registro más reciente
-                val ultimoConsumo = snapshot.children
-                    .mapNotNull { it.getValue(ConsumoEnergetico::class.java) }
-                    .maxByOrNull {
-                        // Si tienes un campo timestamp, úsalo aquí
-                        // Si no, puedes usar la clave del registro como referencia
-                        it.timestamp ?: 0L
-                    }
+                if (snapshot.exists()) {
+                    try {
+                        val consumoList = snapshot.children.mapNotNull { dataSnapshot ->
+                            try {
+                                val data = dataSnapshot.value as? Map<String, Any>
+                                if (data != null) {
+                                    ConsumoEnergetico(
+                                        corriente = data["corriente"]?.toString()?.toDoubleOrNull() ?: 0.0,
+                                        energia_acumulada = data["energia_acumulada"]?.toString()?.toDoubleOrNull() ?: 0.0,
+                                        potencia = data["potencia"]?.toString()?.toDoubleOrNull() ?: 0.0,
+                                        voltaje = data["voltaje"]?.toString()?.toDoubleOrNull() ?: 0.0
+                                    )
+                                } else {
+                                    Log.w("Firebase", "Nodo no válido: ${dataSnapshot.key}")
+                                    null
+                                }
+                            } catch (e: Exception) {
+                                Log.e("Firebase", "Error al procesar nodo: ${dataSnapshot.key} - ${e.message}")
+                                null
+                            }
+                        }
 
-                ultimoConsumo?.let {
-                    actualizarInterfazConDatosConsumo(it)
+                        if (consumoList.isNotEmpty()) {
+                            val consumo = consumoList.last()
+                            Log.d("Consumo", "Datos de consumo actualizados: $consumo")
+                            actualizarInterfazConDatosConsumo(consumo)
+                        } else {
+                            Log.d("Consumo", "No se encontraron datos de consumo para este usuario.")
+                        }
+                    } catch (e: Exception) {
+                        Log.e("Firebase", "Error procesando datos en tiempo real: ${e.message}")
+                    }
+                } else {
+                    Log.d("Consumo", "No existe la colección consumo_energetico o está vacía.")
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Log.e("Firebase", "Error al obtener datos en tiempo real: ${error.message}")
+                Log.e("Firebase", "Error en la escucha de tiempo real: ${error.message}")
             }
         }
 
-        // Usar orderByChild para optimizar la consulta
-        consumoColecction
-            .orderByChild("timestamp")  // Añade este campo a tu modelo
-            .limitToLast(1)  // Obtener solo el último registro
-            .addValueEventListener(consumoEnergeticoListener)
+        consumoColecction.addValueEventListener(consumoEnergeticoListener)
     }
 
+
+
+
     private fun actualizarInterfazConDatosConsumo(consumo: ConsumoEnergetico) {
-        consumoValueTextView.text = "Consumo: ${consumo.potencia} W"
-        voltageValueTextView.text = "${consumo.voltaje} V"
-        currentValueTextView.text = "${consumo.corriente} A"
-        powerValueTextView.text = "${consumo.potencia} W"
+        view?.apply {
+            findViewById<TextView>(R.id.tv_consumo_value)?.text = "Energía Acumulada: ${consumo.energia_acumulada}W"
+            findViewById<TextView>(R.id.tv_voltage_value)?.text = "${consumo.voltaje}V"
+            findViewById<TextView>(R.id.tv_current_value)?.text = "${consumo.corriente}A"
+            findViewById<TextView>(R.id.tv_power_value)?.text = "${consumo.potencia}W"
+        }
     }
 
     private fun obtenerMedidorDelUsuario() {
